@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WatinToSelenium</id>
+    <version>1.0.0</version>
+    <authors>Administrator</authors>
+    <owners>Administrator</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Watin modified to work with Selenium.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+</package>

@@ -105,7 +105,12 @@ namespace WatiN.Core.Native.Selenium
 	        }
 	    }
 
-        internal bool IsLoading()
+	    public void Close()
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    internal bool IsLoading()
         {
             return true;
         }

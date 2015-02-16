@@ -199,6 +199,7 @@
     <Compile Include="ComponentExtensionsTests.cs" />
     <Compile Include="ElementFactoryTests.cs" />
     <Compile Include="ElementOfTypeTests.cs" />
+    <Compile Include="HelloWorld.cs" />
     <Compile Include="HtmlColorTests.cs" />
     <Compile Include="ListItemTests.cs" />
     <Compile Include="ListTests.cs" />

@@ -1,0 +1,1 @@
+nuget pack Core.csproj -Prop Configuration="AutomatedDebug" -OutputDirectory C:\ -IncludeReferencedProjects

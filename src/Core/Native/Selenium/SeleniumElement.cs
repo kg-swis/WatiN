@@ -4,6 +4,7 @@ using System.Drawing;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.Events;
+using WatiN.Core.Actions;
 using WatiN.Core.DialogHandlers;
 using WatiN.Core.UtilityClasses;
 
@@ -177,8 +178,8 @@ namespace WatiN.Core.Native.Selenium
 
         public void Select()
         {
-            var script = string.Format("document.getElementById('{0}').select();", _webElement.GetAttribute("id"));
-            ScriptExecuting(script);
+            var script = "arguments[0].select();";
+            ScriptExecuting(script, _webElement);
         }
 
         public void SubmitForm()
@@ -209,6 +210,16 @@ namespace WatiN.Core.Native.Selenium
         public void Pin()
         {
             // IGNORE
+        }
+
+        public ITypeTextAction CreateTypeTextAction(TextField textField)
+        {
+            return new TypeTextAction(textField);
+        }
+
+        public ISelectAction CreateSelectAction(Option option)
+        {
+            return new SelectAction(option);
         }
     }
 }

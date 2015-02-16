@@ -101,7 +101,7 @@
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;DEBUG;NET35</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>bin\WatiN.Core.XML</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
@@ -157,7 +157,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Net\3.5\Interop.SHDocVw.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.mshtml">
       <HintPath>..\..\lib\Net\3.5\Microsoft.mshtml.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -174,6 +173,12 @@
       <Name>System.Windows.Forms</Name>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.44.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\HighlightAction.cs" />
@@ -255,6 +260,11 @@
     <Compile Include="Native\JSElementArray.cs" />
     <Compile Include="Native\JSBrowserBase.cs" />
     <Compile Include="Native\Mozilla\AttachToFireFoxHelper.cs" />
+    <Compile Include="Native\Selenium\SeleniumBrowser.cs" />
+    <Compile Include="Native\Selenium\SeleniumDocument.cs" />
+    <Compile Include="Native\Selenium\SeleniumElement.cs" />
+    <Compile Include="Native\Selenium\SeleniumElementCollection.cs" />
+    <Compile Include="Native\Selenium\SeleniumWaitForComplete.cs" />
     <Compile Include="Native\Windows\Hwnd.cs" />
     <Compile Include="Native\IHwnd.cs" />
     <Compile Include="Native\INativeBrowser.cs" />
@@ -502,6 +512,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Selenium.cs" />
     <Compile Include="StaticElementFinder.cs" />
     <Compile Include="UtilityClasses\EmptyArray.cs" />
     <Compile Include="UtilityClasses\LazyList.cs" />
@@ -701,7 +712,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\sizzle.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.44.0.0\content\IEDriverServer.exe">
+      <Link>IEDriverServer.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -710,4 +728,15 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Label="DownloadIEDriverBuildTask">
+    <CoreBuildDependsOn>DownloadIEDriver;$(CoreBuildDependsOn)</CoreBuildDependsOn>
+    <IEDriverInstallPath>$(SolutionDir)packages\Selenium.WebDriver.IEDriver.2.44.0.0\</IEDriverInstallPath>
+    <IEDriverToolsPath>$(IEDriverInstallPath)tools\</IEDriverToolsPath>
+    <IEDriverInitScriptPath>$(IEDriverToolsPath)Init.ps1</IEDriverInitScriptPath>
+    <IEDriverPath>$(IEDriverInstallPath)content\IEDriverServer.exe</IEDriverPath>
+    <PowerShellExe Condition="'$(PowerShellExe)'==''">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+  </PropertyGroup>
+  <Target Name="DownloadIEDriver" Label="DownloadIEDriverBuildTask">
+    <Exec Condition="!Exists('$(IEDriverPath)')" Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;'$(IEDriverInitScriptPath)' '$(IEDriverInstallPath)' '$(IEDriverToolsPath)'} &quot;" />
+  </Target>
 </Project>

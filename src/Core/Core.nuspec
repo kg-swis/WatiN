@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>WatinToSelenium</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Administrator</authors>
     <owners>Administrator</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

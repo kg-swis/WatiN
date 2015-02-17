@@ -1,1 +1,1 @@
-nuget pack Core.csproj -build -Prop Configuration="AutomatedDebug" -OutputDirectory \\192.168.224.6\Software\NuGetRepo -IncludeReferencedProjects -Version "%1"
+nuget pack Core.csproj -build -Prop Configuration="AutomatedDebug" -Prop AsmVersion="%1"  -OutputDirectory \\192.168.224.6\Software\NuGetRepo -IncludeReferencedProjects

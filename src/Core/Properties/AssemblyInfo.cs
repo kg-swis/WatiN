@@ -44,7 +44,8 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("2.1.0.1196")]
-[assembly: AssemblyFileVersion("2.1.0.1196")]
+//Перенес задание версии dll в файл VersionInfo.cs
+//[assembly: AssemblyVersion("2.1.0.1196")]
+//[assembly: AssemblyFileVersion("2.1.0.1196")]
 
 [assembly: InternalsVisibleTo("WatiN.Core.UnitTests")]

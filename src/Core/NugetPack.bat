@@ -1,1 +1,1 @@
-nuget pack Core.csproj -Prop Configuration="AutomatedDebug" -OutputDirectory C:\ -IncludeReferencedProjects
+nuget pack Core.csproj -Prop Configuration="AutomatedDebug" -OutputDirectory \\192.168.224.6\Software\NuGetRepo -IncludeReferencedProjects

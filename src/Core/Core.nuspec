@@ -9,5 +9,12 @@
     <description>Watin modified to work with Selenium.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2015</copyright>
+    <references>
+      <reference file="Interop.SHDocVw.dll" />
+      <reference file="WatiN.Core.dll" />
+    </references>
   </metadata>
+  <files>
+    <file src="..\..\lib\Net\3.5\Interop.SHDocVw.dll" target="lib\net40"/>
+  </files>
 </package>
